@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Room
+from .forms import RoomForm
 
 
 
@@ -17,6 +18,9 @@ def room(request, room_id):
     return render(request, 'base/room.html', context)
 
 def add_room(request):
-    context = {}
+    
+    # fetch ModelForm
+    form=RoomForm()
+    context = {'form':form}
     return render(request, 'base/collab_form.html', context)
 
