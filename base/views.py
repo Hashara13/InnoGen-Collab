@@ -16,3 +16,7 @@ def room(request, room_id):
     context = {'room': room}
     return render(request, 'base/room.html', context)
 
+def add_room(request):
+    context = {}
+    return render(request, 'base/collab_form.html', context)
+
