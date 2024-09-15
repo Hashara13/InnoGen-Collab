@@ -16,10 +16,15 @@ class Room(models.Model):
     updated=models.DateTimeField(auto_now=True)
     created=models.DateField(auto_now_add=True)
     
+    # sort recent in fIrst
+    class Meta:
+        ordering=['-updated','-created']
+    
     def __str__(self):
         return self.name
     
 class Message(models.Model):
+    
      # once delete 1 user contain messages also deleted
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     # once delete 1 chat room contain messages also deleted
