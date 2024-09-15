@@ -1,0 +1,82 @@
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+__pycache__/
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.env
+
+# Local environment variables
+.env
+*.envrc
+*.local
+*.secret
+
+# Media files
+/media
+
+# Static files
+/static
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# VSCode project settings
+.vscode/
+
+# PyCharm project settings
+.idea/
+
+# macOS files
+.DS_Store
+
+# Backup files
+*.bak
+*.swp
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+
+# MyPy
+.mypy_cache/
+
+# Pytest cache
+.pytest_cache/
+
+# pipenv
+pipenv
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Sphinx documentation
+docs/_build/
+
+# Local testing
+.pytest_cache/
+.tox/
+
+# Build
+build/
+dist/
+
+# Django migrations
+**/migrations/*.pyc
+**/migrations/*.pyo
+**/migrations/__pycache__
