@@ -1,1 +1,10 @@
-<h1>Room</h1>
+{% extends 'main.html' %}
+{% block content %}
+
+<h1>Room: {{ room.name }}</h1>
+<p>{{ room.description }}</p>
+<p>Hosted by: {{ room.host.username }}</p>
+
+<a href="{% url 'home' %}">Back to Home</a>
+
+{% endblock %}

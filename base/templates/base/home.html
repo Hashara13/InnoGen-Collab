@@ -6,7 +6,10 @@
 <ul>
     {% for room in rooms %}
         <li>
-            <a href="{% url 'room' room.id %}">{{ room.name }}</a> - {{ room.description }}
+            <span>@{{ room.host.username }}</span>
+            <h3>
+                <a href="{% url 'room' room.id %}">{{ room.name }}</a> - {{ room.description }}
+            </h3>  
         </li>
     {% empty %}
         <li>No rooms available</li>
