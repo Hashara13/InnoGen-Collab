@@ -16,13 +16,13 @@ def home(request):
         Q(name__icontains=query) |
         Q(desc__icontains=query)
         )
-  
+    r_count=rooms.count()
 
     topics=Topic.objects.all()
     
     #fetch all queys in Room model to view
     topics=Topic.objects.all()
-    context={'rooms':rooms,'topics':topics}
+    context={'rooms':rooms,'topics':topics,'r_count':r_count}
     return render(request,'base/home.html',context)
 
 def room(request, room_id):
