@@ -6,6 +6,10 @@ LOGO
 <form method="GET" action="">
 <input type="text" name="query" placeholder="Search Here..."/>
 </form>
+{% if request.user.is_authenticated %}
+<a href="signout">SignOut</a>
+{% else %}
 <a href="{% url 'signin' %}">SignIn</a>
+{% endif %}
 
 <hr>

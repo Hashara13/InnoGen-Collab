@@ -6,9 +6,8 @@ from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
-
-
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def signinPage(request):
     if request.method=='POST':
@@ -27,6 +26,9 @@ def signinPage(request):
     context={}
     return render(request,'base/signin_up.html',context)
 
+def signOutPage(request):
+    logout(request)
+    return redirect('home')
 def home(request):
     
     # search by Topics attr
@@ -51,6 +53,7 @@ def room(request, room_id):
     context = {'room': room}
     return render(request, 'base/room.html', context)
 
+@login_required(login_url='signin')
 def add_room(request):
     
     # fetch ModelForm
@@ -63,11 +66,13 @@ def add_room(request):
             
     context = {'form':form}
     return render(request, 'base/collab_form.html', context)
-
+@login_required(login_url='signin')
 def edit_room(request, room_id):
     room = Room.objects.get(id=room_id)
     # show existance values
     form=RoomForm(instance=room)
+    if request.user != room.user:
+        return HttpResponse('Unauthorized Access')
     if request.method=='POST':
         form=RoomForm(request.POST, instance=room)
         if form.is_valid():
@@ -76,6 +81,7 @@ def edit_room(request, room_id):
     context = {'form': form}
     return render(request, 'base/collab_form.html', context)
 
+@login_required(login_url='signin')
 def remove_room(request, room_id):
     room = Room.objects.get(id=room_id)
     # # show existance values
