@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 def signinPage(request):
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -71,7 +74,7 @@ def edit_room(request, room_id):
     room = Room.objects.get(id=room_id)
     # show existance values
     form=RoomForm(instance=room)
-    if request.user != room.user:
+    if request.user != room.host:
         return HttpResponse('Unauthorized Access')
     if request.method=='POST':
         form=RoomForm(request.POST, instance=room)
@@ -86,6 +89,8 @@ def remove_room(request, room_id):
     room = Room.objects.get(id=room_id)
     # # show existance values
     # form=RoomForm(instance=room)
+    if request.user != room.host:
+        return HttpResponse('Unauthorized Access')
     if request.method=='POST':
         room.delete()
         return redirect('home')
