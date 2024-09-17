@@ -3,8 +3,29 @@ from django.http import HttpResponse
 from .models import Room,Topic
 from .forms import RoomForm
 from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
+
+
+def signinPage(request):
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        try:
+            user=User.objects.get(username=username)
+        except:
+            messages.error(request,"user dosen't have access")
+        user=authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request,"Username or Password  dosen't exist, try again")
+    context={}
+    return render(request,'base/signin_up.html',context)
 
 def home(request):
     
