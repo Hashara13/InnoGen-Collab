@@ -12,7 +12,7 @@ def home(request):
     topics=Topic.objects.all()
     
     #fetch all queys in Room model to view
-    rooms=Room.objects.all()
+    topics=Topic.objects.all()
     context={'rooms':rooms,'topics':topics}
     return render(request,'base/home.html',context)
 
