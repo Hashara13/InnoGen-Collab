@@ -32,6 +32,7 @@ def signinPage(request):
 
 def signOutPage(request):
     logout(request)
+    context={'page':page}
     return redirect('home')
 
 def signUpPage(request):
