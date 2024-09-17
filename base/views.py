@@ -6,7 +6,9 @@ from .forms import RoomForm
 
 
 def home(request):
+    q=request.GET.get('query') if request.GET.get('query') !=None else ''
     
+    topics=Topic.objects.filter(topics__name__icontains=query)
     topics=Topic.objects.all()
     
     #fetch all queys in Room model to view
