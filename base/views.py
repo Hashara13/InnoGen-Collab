@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
 
 def signinPage(request):
     page='signin'
@@ -36,8 +37,9 @@ def signOutPage(request):
     return redirect('home')
 
 def signUpPage(request):
-    page='signup'
-    return render(request,'base/signin_up.html')
+    # page='signup'
+    form=UserCreationForm()
+    return render(request,'base/signin_up.html',{'form':form})
 
 def home(request):
     
