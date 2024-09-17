@@ -2,13 +2,22 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Room,Topic
 from .forms import RoomForm
+from django.db.models import Q
 
 
 
 def home(request):
+    
+    # search by Topics attr
     query=request.GET.get('query') if request.GET.get('query') !=None else ''
     
-    rooms=Room.objects.filter(topic__name__icontains=query)
+    rooms=Room.objects.filter(
+        Q(topic__name__icontains=query) |
+        Q(name__icontains=query) |
+        Q(desc__icontains=query)
+        )
+  
+
     topics=Topic.objects.all()
     
     #fetch all queys in Room model to view
