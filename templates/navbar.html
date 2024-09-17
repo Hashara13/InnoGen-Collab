@@ -7,6 +7,7 @@ LOGO
 <input type="text" name="query" placeholder="Search Here..."/>
 </form>
 {% if request.user.is_authenticated %}
+<h3>Hi, {{request.user}}</h3>
 <a href="signout">SignOut</a>
 {% else %}
 <a href="{% url 'signin' %}">SignIn</a>
