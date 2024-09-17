@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 def signinPage(request):
+    page='signin'
     if request.user.is_authenticated:
         return redirect('home')
     
@@ -26,12 +27,17 @@ def signinPage(request):
             return redirect('home')
         else:
             messages.error(request,"Username or Password  dosen't exist, try again")
-    context={}
+    context={'page':page}
     return render(request,'base/signin_up.html',context)
 
 def signOutPage(request):
     logout(request)
     return redirect('home')
+
+def signUpPage(request):
+    page='signup'
+    return render(request,'base/signin_up.html')
+
 def home(request):
     
     # search by Topics attr
