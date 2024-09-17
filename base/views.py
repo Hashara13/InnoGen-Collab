@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Room
+from .models import Room,Topic
 from .forms import RoomForm
 
 
 
 def home(request):
     
+    topics=Topic.objects.all()
+    
     #fetch all queys in Room model to view
     rooms=Room.objects.all()
-    context={'rooms':rooms}
+    context={'rooms':rooms,'topics':topics}
     return render(request,'base/home.html',context)
 
 def room(request, room_id):

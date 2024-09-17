@@ -2,6 +2,24 @@
 
 <h1>Home</h1>
 
+<style>
+  .home-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+</style>
+<div class="home-container">
+  <div>
+    <h3>Search Here</h3>
+    <hr>
+    <div>
+      <a href="{% url 'home'%}">All Topics</a></div>
+    {% for topic in topics %}
+<div>
+  <a href="{% url 'home'%}?query={{topic.name}}">{{topic.name}}</a></div>
+    {% endfor %}
+
+  </div>
 <div>
   <a href="{% url 'add-room'   %}">Add Rooms</a>
 
@@ -19,6 +37,8 @@
 
     {% endfor %}
   </div>
+</div>
+ 
 </div>
 
 {% endblock %}
