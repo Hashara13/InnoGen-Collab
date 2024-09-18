@@ -6,29 +6,32 @@
 <p>Hosted by: {{ room.host.username }}</p>
 
 <a href="{% url 'home' %}">Back to Home</a>
-<p>{{room.desc}}</p>
+
 <div class="comment-wrapper">
-    <h3>
-        Chat Here
-    </h3>
+    <h3>Chat Here</h3>
     <hr>
     {% for message in room_messages %}
     <div>
-        <span>@{{message.user.username}}</span>
-        <span class="thread__date">{{message.created|timesince}} ago</span>
-        <p>{{message.body}}</p>
+        <span>@{{ message.user.username }}</span>
+        <span class="thread__date">{{ message.created|timesince }} ago</span>
+        <p>{{ message.body }}</p>
         <hr>
     </div>
+    {% empty %}
+    <p>No messages yet. Be the first to chat!</p>
     {% endfor %}
 </div>
 
-{% if request.user_is_authenticated %}
+{% if request.user.is_authenticated %}
 <div class="comment-form">
-<form method="POST" action="">
-    {% csrf_token %}
-    <input type="text" name="body" placeholder="Enter your message here..."/>
-</form>
-
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input type="text" name="body" placeholder="Enter your message here..." required>
+        <button type="submit">Send</button>
+    </form>
 </div>
+{% else %}
+<p>You need to <a href="{% url 'signin' %}">sign in</a> to chat.</p>
 {% endif %}
+
 {% endblock %}
