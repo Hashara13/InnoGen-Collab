@@ -43,6 +43,16 @@
 </div>
  <div>
   <h3> Recent </h3>
+  <hr>
+  {% for message in room_messages %}
+  <div>
+    <small>
+      @{{message.user}} | {{message.created | timesince}}
+    </small>
+    <small>To "{{message.room}}"</small>
+    <p>{{message.body}}</p>
+  </div>
+  {% endfor %}
  </div>
 </div>
 

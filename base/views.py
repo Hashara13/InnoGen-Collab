@@ -64,11 +64,12 @@ def home(request):
     r_count=rooms.count()
 
     topics=Topic.objects.all()
-    
+    room_messages = Message.objects.all()
     #fetch all queys in Room model to view
     topics=Topic.objects.all()
-    context={'rooms':rooms,'topics':topics,'r_count':r_count}
+    context={'rooms':rooms,'topics':topics,'r_count':r_count,'room_messages':room_messages}
     return render(request,'base/home.html',context)
+
 
 def room(request, room_id):
     room = Room.objects.get(id=room_id)
@@ -106,6 +107,8 @@ def add_room(request):
             
     context = {'form':form}
     return render(request, 'base/collab_form.html', context)
+
+
 @login_required(login_url='signin')
 def edit_room(request, room_id):
     room = Room.objects.get(id=room_id)
