@@ -6,5 +6,23 @@
 <p>Hosted by: {{ room.host.username }}</p>
 
 <a href="{% url 'home' %}">Back to Home</a>
+<p>{{room.desc}}</p>
+<div class="com-wrapper">
+    <h3>
+        Chat Here
+    </h3>
+    <hr>
+    {% for message in room_messages %}
+    <div>
+        <span>@{{message.user.username}}</span>
+        <span class="thread__date">{{message.created|timesince}} ago</span>
+        <p>{{message.body}}</p>
+        <hr>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    
+</div>
 
 {% endblock %}
