@@ -7,7 +7,7 @@
 
 <a href="{% url 'home' %}">Back to Home</a>
 <p>{{room.desc}}</p>
-<div class="com-wrapper">
+<div class="comment-wrapper">
     <h3>
         Chat Here
     </h3>
@@ -21,8 +21,14 @@
     </div>
     {% endfor %}
 </div>
-<div>
-    
-</div>
 
+{% if request.user_is_authenticated %}
+<div class="comment-form">
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="body" placeholder="Enter your message here..."/>
+</form>
+
+</div>
+{% endif %}
 {% endblock %}
