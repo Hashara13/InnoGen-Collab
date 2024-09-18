@@ -11,25 +11,10 @@
 <div class="home-container">
   <div>{% include 'base/topics_page.html' %}</div>
   <div>
-    <h4>{{r_count}}Contents are available</h4>
+    <h4>{{r_count}} Contents are available</h4>
     <a href="{% url 'add-room'   %}">Add Rooms</a>
 
-    <div>
-      {% for room in rooms %}
-      <div>
-        {%if request.user == room.host %}
-        <a href="{% url 'edit-room' room.id %}">Edit</a>
-        <a href="{% url 'remove-room' room.id %}">Remove</a>
-        {% endif %}
-        <span>@{{ room.host.username }}</span>
-        <h3>
-          {{room.id}} | <a href="{% url 'room' room.id %}">{{ room.name }}</a> -
-          {{ room.topic.name }}
-        </h3>
-      </div>
-
-      {% endfor %}
-    </div>
+    {% include 'base/content_page.html' %}
   </div>
   <div>{% include 'base/activities_page.html' %}</div>
 </div>
