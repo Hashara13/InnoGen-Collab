@@ -64,7 +64,7 @@ def home(request):
     r_count=rooms.count()
 
     topics=Topic.objects.all()
-    room_messages = Message.objects.all()
+    room_messages = Message.objects.filter(Q(room__name__icontains=query))
     #fetch all queys in Room model to view
     topics=Topic.objects.all()
     context={'rooms':rooms,'topics':topics,'r_count':r_count,'room_messages':room_messages}
