@@ -1,6 +1,15 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<style>
+    .room-container{
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+    }
+  </style>
+
+<div class="room-container">
+    <div>
 <h1>Room: {{ room.name }}</h1>
 <p>{{ room.description }}</p>
 <p>Hosted by: {{ room.host.username }}</p>
@@ -33,5 +42,10 @@
 {% else %}
 <p>You need to <a href="{% url 'signin' %}">sign in</a> to chat.</p>
 {% endif %}
-
+</div>
+<div>
+<h3>Our Community</h3>
+<hr>
+</div>
+</div>
 {% endblock %}
