@@ -133,3 +133,13 @@ def remove_room(request, room_id):
         return redirect('home')
     # context = {'form': form}
     return render(request, 'base/remove.html', {'obj':room})
+
+@login_required(login_url='signin')
+def remove_message(request, room_id):
+    message = Message.objects.get(id=room_id)
+    if request.user != message.user:
+        return HttpResponse('Unauthorized Access')
+    if request.method=='POST':
+        message.delete()
+        return redirect('home')
+    return render(request, 'base/remove.html', {'obj':message})
