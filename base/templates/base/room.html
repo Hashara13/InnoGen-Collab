@@ -1,64 +1,57 @@
 {% extends 'main.html' %}
 {% block content %}
 
-<style>
-    .room-container{
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-    }
-  </style>
+<div class="grid grid-cols-12 gap-6 p-8">
+    <div class="col-span-8 bg-gray-800 rounded-lg shadow-lg p-6">
+        <h1 class="text-3xl font-bold text-gray-100">{{ room.name }}</h1>
+        <p class="text-gray-300 mt-2">{{ room.description }}</p>
+        <p class="text-gray-400 mt-1">Hosted by: <span class="text-blue-400">{{ room.host.username }}</span></p>
 
-<div class="room-container">
-    <div>
-<h1>Room: {{ room.name }}</h1>
-<p>{{ room.description }}</p>
-<p>Hosted by: {{ room.host.username }}</p>
+        <a href="{% url 'home' %}" class="text-blue-500 hover:text-blue-400 mt-4 inline-block transition">Back to Home</a>
 
-<a href="{% url 'home' %}">Back to Home</a>
+        <div class="comment-wrapper mt-6">
+            <h3 class="text-xl font-semibold text-gray-200">Chat Here</h3>
+            <hr class="border-gray-600 my-2">
+            {% for message in room_messages %}
+            <div class="bg-gray-700 p-4 rounded-lg mb-4">
+                {% if request.user == message.user %}
+                <a href="{% url 'remove-message' message.id %}" class="text-red-500 hover:text-red-400 transition">Remove</a>
+                {% endif %}
+                <span class="font-bold text-gray-300">@{{ message.user.username }}</span>
+                <span class="thread__date text-gray-400">{{ message.created|timesince }} ago</span>
+                <p class="text-gray-200 mt-1">{{ message.body }}</p>
+                <hr class="border-gray-600 mt-2">
+            </div>
+            {% empty %}
+            <p class="text-gray-400">No messages yet. Be the first to chat!</p>
+            {% endfor %}
+        </div>
 
-<div class="comment-wrapper">
-    <h3>Chat Here</h3>
-    <hr>
-    {% for message in room_messages %}
-    <div>
-        {% if request.user == message.user %}
-        <a href="{% url 'remove-message' message.id %}">Remove</a>
+        {% if request.user.is_authenticated %}
+        <div class="comment-form mt-4">
+            <form method="POST" action="" class="flex">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Enter your message here..."
+                       class="flex-1 p-2 rounded-lg bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 transition ml-2">Send</button>
+            </form>
+        </div>
+        {% else %}
+        <p class="text-gray-400 mt-4">You need to <a href="{% url 'signin' %}" class="text-blue-500 hover:text-blue-400">sign in</a> to chat.</p>
         {% endif %}
-        <span>@{{ message.user.username }}</span>
-        <span class="thread__date">{{ message.created|timesince }} ago</span>
-        <p>{{ message.body }}</p>
-        <hr>
     </div>
-    {% empty %}
-    <p>No messages yet. Be the first to chat!</p>
-    {% endfor %}
+
+    <div class="col-span-4 bg-gray-800 rounded-lg shadow-lg p-6">
+        <h3 class="text-xl font-semibold text-gray-200">Our Community</h3>
+        <hr class="border-gray-600 my-2">
+        {% for user in participants %}
+        <div class="bg-gray-700 p-4 rounded-lg mb-4">
+            <h3 class="text-gray-300">@{{ user.username }}</h3>
+        </div>
+        {% empty %}
+        <p class="text-gray-400">No participants yet.</p>
+        {% endfor %}
+    </div>
 </div>
 
-{% if request.user.is_authenticated %}
-<div class="comment-form">
-    <form method="POST" action="">
-        {% csrf_token %}
-        <input type="text" name="body" placeholder="Enter your message here..." required>
-        <button type="submit">Send</button>
-    </form>
-</div>
-{% else %}
-<p>You need to <a href="{% url 'signin' %}">sign in</a> to chat.</p>
-{% endif %}
-</div>
-<div>
-    <h3>Our Community</h3>
-    <hr>
-    {% for user in participants %}
-    <div>
-        <h3>
-            @{{ user.username }}
-        </h3>
-    </div>
-    {% empty %}
-    <p>No participants yet.</p>
-    {% endfor %}
-</div>
-
-</div>
 {% endblock %}
