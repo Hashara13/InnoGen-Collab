@@ -1,20 +1,25 @@
-{% extends 'main.html' %} {% block content %}
-<style>
-    .profile-container {
-      display: grid;
-      grid-template-columns: 1fr 3fr 1fr;
-    }
-  </style>
-  
-<h1>{{user.username}}</h1>
-<div class="profile-container">
-    <div>{% include 'base/topics_page.html' %}</div>
-    <div>
-      <h4>{{r_count}} Contents are available</h4>
-      <a href="{% url 'add-room'   %}">Add Rooms</a>
-  
-      {% include 'base/content_page.html' %}
+{% extends 'main.html' %}
+
+{% block content %}
+<h1 class="text-4xl font-bold text-gray-100 text-center mt-8">{{ user.username }}</h1>
+
+<div class="profile-container grid grid-cols-12 gap-6 p-8">
+    <div class="col-span-3 bg-gray-800 rounded-lg shadow-lg p-4">
+        {% include 'base/topics_page.html' %}
     </div>
-    <div>{% include 'base/activities_page.html' %}</div>
-  </div>
+    
+    <div class="col-span-6 bg-gray-700 rounded-lg shadow-lg p-4">
+        <h4 class="text-lg font-medium text-gray-200 mb-4">{{ r_count }} Contents are available</h4>
+        <a href="{% url 'add-room' %}" class="inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition">
+            Add Rooms
+        </a>
+        <div class="mt-6">
+            {% include 'base/content_page.html' %}
+        </div>
+    </div>
+    
+    <div class="col-span-3 bg-gray-800 rounded-lg shadow-lg p-4">
+        {% include 'base/activities_page.html' %}
+    </div>
+</div>
 {% endblock %}
