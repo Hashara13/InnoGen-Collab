@@ -1,37 +1,41 @@
 {% extends 'main.html' %}
 {% block content %}
-{% if page == 'signin' %}
-<div>
-    <form method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username" required>
-        </div>
-        <br>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-        </div>
-        <br>
-        <div>
-            <input type="submit" value="Login">
-        </div>
-    </form>
-    <p>Are you not registered yet ?</p>
-    <a href="{% url 'signup' %}">Sign Up</a>
+<div class="flex justify-center items-center min-h-screen bg-gray-900 p-4">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-8 w-full max-w-md">
+        {% if page == 'signin' %}
+        <h2 class="text-2xl font-bold text-gray-100 text-center mb-6">Sign In</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="username" class="block text-gray-300">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username"
+                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-300">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div>
+                <input type="submit" value="Login"
+                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition">
+            </div>
+        </form>
+        <p class="text-gray-400 text-center mt-4">Are you not registered yet?</p>
+        <a href="{% url 'signup' %}" class="text-blue-500 hover:text-blue-400 text-center block">Sign Up</a>
+        {% else %}
+        <h2 class="text-2xl font-bold text-gray-100 text-center mb-6">Sign Up</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p|add_class:"mb-4" }}
+            <div>
+                <input type="submit" value="Sign Up"
+                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition">
+            </div>
+        </form>
+        <p class="text-gray-400 text-center mt-4">Are you already a registered user?</p>
+        <a href="{% url 'signin' %}" class="text-blue-500 hover:text-blue-400 text-center block">Sign In</a>
+        {% endif %}
+    </div>
 </div>
-{% else %}
-<div>
-    <form method="POST">
-        {% csrf_token %}
-   {{form.as_p}}
-        <div>
-            <input type="submit" value="SignUp">
-        </div>
-    </form>
-    <p>Are you already registered user ?</p>
-    <a href="{% url 'signin' %}">Sign In</a>
-</div>
-{% endif %}
 {% endblock %}
