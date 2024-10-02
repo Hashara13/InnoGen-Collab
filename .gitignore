@@ -80,3 +80,4 @@ dist/
 **/migrations/*.pyc
 **/migrations/*.pyo
 **/migrations/__pycache__
+node_modules
