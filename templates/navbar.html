@@ -1,16 +1,17 @@
-<a href="/">
-    <h1>
-LOGO
-    </h1>
+<a href="/" class="flex items-center mb-6">
+    <h1 class="text-4xl font-bold text-gray-100">LOGO</h1>
 </a>
-<form method="GET" action="">
-<input type="text" name="query" placeholder="Search Here..."/>
+
+<form method="GET" action="" class="flex mb-6">
+    <input type="text" name="query" placeholder="Search Here..."
+           class="w-full p-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
 </form>
+
 {% if request.user.is_authenticated %}
-<h3>Hi, {{request.user}}</h3>
-<a href="signout">SignOut</a>
+    <h3 class="text-xl text-gray-100 mb-2">Hi, {{request.user}}</h3>
+    <a href="signout" class="text-red-400 hover:text-red-300 transition">SignOut</a>
 {% else %}
-<a href="{% url 'signin' %}">SignIn</a>
+    <a href="{% url 'signin' %}" class="text-blue-400 hover:text-blue-300 transition">SignIn</a>
 {% endif %}
 
-<hr>
+<hr class="border-gray-600 mt-6" />
