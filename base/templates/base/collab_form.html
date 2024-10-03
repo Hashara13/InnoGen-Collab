@@ -1,5 +1,5 @@
 {% extends 'main.html' %} {% block content %}
-<div class="col-span-6 bg-gray-700 rounded-lg shadow-lg p-4">
+<div class="col-span-6 bg-white-700 rounded-lg shadow-lg p-4">
   <form method="POST" action="">
     {% csrf_token %}
     {{form.as_p}}
