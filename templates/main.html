@@ -5,22 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/output.css' %}">
-    <!-- <Link rel="stylesheet" type="text/css"media='screen' href="{% static 'styles/main.css'%}"> -->
     <title>InnoGen-Collab</title>
 </head>
-<body>
-    
+<body class="bg-gray-900 text-gray-100">
+
     {% include 'navbar.html' %}
+    
     {% if messages %}
-    <ul class="messages">
+    <ul class="bg-blue-500 p-4 rounded-lg shadow-lg mb-6">
         {% for message in messages %}
-        <li>{{ message }}</li>
+        <li class="text-white">{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
-    <!-- <img src="{% static % 'images/logo.png'}"/> -->
-    {% block content %}
-
-    {% endblock %}
+    
+    <div class="container mx-auto p-4">
+        {% block content %}
+        <h1 class="text-4xl font-bold mb-4">Welcome to InnoGen-Collab</h1>
+        <p class="text-xl mb-4">This is your collaboration space.</p>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold mb-2">Latest Updates</h2>
+            <p>Your content goes here.</p>
+        </div>
+        {% endblock %}
+    </div>
+    
+    <footer class="bg-gray-800 text-center py-4 mt-6">
+        <p class="text-gray-400">© 2024 InnoGen-Collab. All rights reserved.</p>
+    </footer>
 </body>
 </html>
