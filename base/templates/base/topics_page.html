@@ -2,7 +2,7 @@
 <hr class="border-gray-400 mb-4" />
 
 <div class="mb-4">
-  <a href="{% url 'home' %}" class="text-gray-600 hover:text-gray-800 transition duration-200">
+  <a href="{% url 'home' %}" class="text-gray-900 hover:text-gray-800 transition duration-200">
     All Topics
   </a>
 </div>
@@ -11,7 +11,7 @@
   {% for topic in topics %}
   <div class="mb-2">
     <a href="{% url 'home' %}?query={{ topic.name }}"
-       class="text-gray-700 hover:text-white transition duration-200 block p-2 rounded-lg hover:bg-blue-600">
+       class="text-gray-900 transition duration-200 block p-2 rounded-lg hover:bg-blue-600">
       {{ topic.name }}
     </a>
   </div>
