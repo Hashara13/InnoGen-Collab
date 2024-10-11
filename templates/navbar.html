@@ -1,17 +1,24 @@
-<a href="/" class="flex items-center mb-6">
-    <h1 class="text-4xl font-bold text-gray-100">LOGO</h1>
-</a>
+{% load static %}
 
-<form method="GET" action="" class="flex mb-6">
-    <input type="text" name="query" placeholder="Search Here..."
-           class="w-full p-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-</form>
+<nav class="flex justify-between items-center mb-6 bg-gray-900 p-4 shadow-lg">
+    <a href="/" class="flex items-center">
+        <img src="{% static 'images/logo.png' %}" alt="LOGO" class="h-5 w-5 object-contain bg-gray-800 p-1 rounded mr-2" />
+        <h1 class="text-2xl font-bold text-white tracking-wide">LOGO</h1>
+    </a>
 
-{% if request.user.is_authenticated %}
-    <h3 class="text-xl text-gray-100 mb-2">Hi, {{request.user}}</h3>
-    <a href="signout" class="text-red-400 hover:text-red-300 transition">SignOut</a>
-{% else %}
-    <a href="{% url 'signin' %}" class="text-blue-400 hover:text-blue-300 transition">SignIn</a>
-{% endif %}
+    <form method="GET" action="" class="flex-grow mx-4">
+        <input type="text" name="query" placeholder="Search Here..."
+               class="w-full p-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-md" />
+    </form>
 
-<hr class="border-gray-600 mt-6" />
+    <div class="flex items-center space-x-4">
+        {% if request.user.is_authenticated %}
+            <h3 class="text-lg text-white">Hi, {{request.user}}</h3>
+            <a href="signout" class="text-red-500 hover:text-red-400 transition duration-300 ease-in-out">SignOut</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="text-cyan-500 hover:text-cyan-400 transition duration-300 ease-in-out">SignIn</a>
+        {% endif %}
+    </div>
+</nav>
+
+<hr class="border-gray-700 mt-6 mb-4" />
