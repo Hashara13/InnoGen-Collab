@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="grid grid-cols-12 gap-6 p-8">
-    <div class="col-span-8 bg-gray-800 rounded-lg shadow-lg p-6">
+    <div class="col-span-8 bg-gray-900 rounded-lg shadow-lg p-6">
         <h1 class="text-3xl font-bold text-gray-100">{{ room.name }}</h1>
         <p class="text-gray-300 mt-2">{{ room.description }}</p>
         <p class="text-gray-400 mt-1">Hosted by: <span class="text-blue-400">{{ room.host.username }}</span></p>
@@ -13,7 +13,7 @@
             <h3 class="text-xl font-semibold text-gray-200">Chat Here</h3>
             <hr class="border-gray-600 my-2">
             {% for message in room_messages %}
-            <div class="bg-gray-700 p-4 rounded-lg mb-4">
+            <div class="bg-gray-800 p-4 rounded-lg mb-4">
                 {% if request.user == message.user %}
                 <a href="{% url 'remove-message' message.id %}" class="text-red-500 hover:text-red-400 transition">Remove</a>
                 {% endif %}
@@ -33,7 +33,7 @@
                 {% csrf_token %}
                 <input type="text" name="body" placeholder="Enter your message here..."
                        class="flex-1 p-2 rounded-lg bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 transition ml-2">Send</button>
+                <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition ml-2">Send</button>
             </form>
         </div>
         {% else %}
@@ -41,11 +41,11 @@
         {% endif %}
     </div>
 
-    <div class="col-span-4 bg-gray-800 rounded-lg shadow-lg p-6">
+    <div class="col-span-4 bg-gray-900 rounded-lg shadow-lg p-6">
         <h3 class="text-xl font-semibold text-gray-200">Our Community</h3>
         <hr class="border-gray-600 my-2">
         {% for user in participants %}
-        <div class="bg-gray-700 p-4 rounded-lg mb-4">
+        <div class="bg-gray-800 p-4 rounded-lg mb-4">
             <h3 class="text-gray-300">@{{ user.username }}</h3>
         </div>
         {% empty %}
