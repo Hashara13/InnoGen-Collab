@@ -1,17 +1,17 @@
-<h3 class="text-2xl font-semibold text-gray-800 mb-4">Search Here</h3>
-<hr class="border-gray-400 mb-4" />
+<h3 class="text-2xl font-semibold text-gray-900 mb-4">Search Here</h3>
+<hr class="border-gray-300 mb-4" />
 
 <div class="mb-4">
-  <a href="{% url 'home' %}" class="text-gray-900 hover:text-gray-800 transition duration-200">
+  <a href="{% url 'home' %}" class="text-gray-900 hover:text-blue-600 transition duration-200 text-lg">
     All Topics
   </a>
 </div>
 
-<div class="bg-gray-200 rounded-lg p-4 shadow-lg">
+<div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
   {% for topic in topics %}
   <div class="mb-2">
     <a href="{% url 'home' %}?query={{ topic.name }}"
-       class="text-gray-900 transition duration-200 block p-2 rounded-lg hover:bg-blue-600">
+       class="text-gray-900 transition duration-200 block p-3 rounded-lg hover:bg-blue-500 hover:text-white">
       {{ topic.name }}
     </a>
   </div>
