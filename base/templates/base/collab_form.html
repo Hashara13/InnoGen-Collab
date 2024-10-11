@@ -1,9 +1,16 @@
-{% extends 'main.html' %} {% block content %}
-<div class="col-span-6 bg-white-700 rounded-lg shadow-lg p-4">
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="col-span-1 md:col-span-6 bg-white rounded-lg shadow-lg p-6 mx-auto mt-8">
+  <h2 class="text-2xl font-semibold text-center mb-4 text-gray-800">Submit Your Information</h2>
   <form method="POST" action="">
     {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit" />
+    <div class="mb-4">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+      Submit
+    </button>
   </form>
 </div>
-{% endblock content %}
+{% endblock %}
