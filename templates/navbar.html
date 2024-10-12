@@ -1,8 +1,8 @@
 {% load static %}
 
-<nav class="flex justify-between items-center mb-6 bg-gray-900 p-4 shadow-lg">
+<nav class="navbar flex justify-between items-center mb-6">
     <a href="/" class="flex items-center">
-        <img src="{% static 'images/logo.png' %}" alt="LOGO" class="h-5 w-5 object-contain bg-gray-800 p-1 rounded mr-2" />
+        <img src="{% static 'images/logo.png' %}" alt="LOGO" style="height: 50px; width: 110px;" class="object-contain p-0.5 rounded mr-2" />
     </a>
 
     <form method="GET" action="" class="flex-grow mx-4">
@@ -10,7 +10,11 @@
                class="w-full p-2 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 shadow-md" />
     </form>
 
-    <div class="flex items-center space-x-4">
+    <div class="user-controls flex items-center space-x-4">
+        <div class="notification-icon relative">
+            <i class="fas fa-bell"></i> <!-- Font Awesome bell icon for notifications -->
+        </div>
+        
         {% if request.user.is_authenticated %}
             <h3 class="text-lg text-white">Hi, {{request.user}}</h3>
             <a href="signout" class="text-red-500 hover:text-red-400 transition duration-300 ease-in-out">SignOut</a>
