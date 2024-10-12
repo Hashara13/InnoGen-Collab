@@ -1,14 +1,14 @@
 {% extends 'main.html' %}
 {% block content %}
 <div class="flex items-center justify-center min-h-screen bg-gray-800">
-    <div class="bg-gray-900 rounded-lg shadow-lg p-6 max-w-sm w-full">
-        <h2 class="text-2xl font-bold text-gray-100 mb-4">Confirm Delete</h2>
-        <p class="text-gray-300 mb-4">Are you sure you want to delete "{{ obj }}"?</p>
+    <div class="confirm-delete-container bg-gray-900 rounded-lg shadow-lg p-6 max-w-sm w-full">
+        <h2 class="confirm-delete-title">Confirm Delete</h2>
+        <p class="confirm-delete-message">Are you sure you want to delete "{{ obj }}"?</p>
         <form method="POST" action="">
             {% csrf_token %}
             <div class="flex justify-between">
-                <a href="{{ request.META.HTTP_REFERER }}" class="bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition">Discard</a>
-                <input type="submit" value="Confirm" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-400 transition" />
+                <a href="{{ request.META.HTTP_REFERER }}" class="discard-button">Discard</a>
+                <input type="submit" value="Confirm" class="confirm-button" />
             </div>
         </form>
     </div>
