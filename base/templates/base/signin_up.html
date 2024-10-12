@@ -9,16 +9,16 @@
             <div class="mb-4">
                 <label for="username" class="block text-gray-300">Username:</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username"
-                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
             </div>
             <div class="mb-4">
                 <label for="password" class="block text-gray-300">Password:</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password"
-                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                       class="mt-1 block w-full p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
             </div>
             <div>
                 <input type="submit" value="Login"
-                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition">
+                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition duration-200">
             </div>
         </form>
         <p class="text-gray-400 text-center mt-4">Are you not registered yet?</p>
@@ -30,7 +30,7 @@
             {{ form.as_p|add_class:"mb-4" }}
             <div>
                 <input type="submit" value="Sign Up"
-                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition">
+                       class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-400 transition duration-200">
             </div>
         </form>
         <p class="text-gray-400 text-center mt-4">Are you already a registered user?</p>

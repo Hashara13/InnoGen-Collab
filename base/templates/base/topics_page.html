@@ -1,21 +1,21 @@
-<h3 class="text-2xl font-semibold text-gray-900 mb-4">Search Here</h3>
+<h3 class="search-title text-2xl font-semibold text-gray-900 mb-4">Search Here</h3>
 <hr class="border-gray-300 mb-4" />
 
 <div class="mb-4">
-  <a href="{% url 'home' %}" class="text-gray-900 hover:text-blue-600 transition duration-200 text-lg">
-    All Topics
-  </a>
+    <a href="{% url 'home' %}" class="all-topics-link text-gray-900 hover:text-blue-600 transition duration-200 text-lg">
+        All Topics
+    </a>
 </div>
 
-<div class="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-  {% for topic in topics %}
-  <div class="mb-2">
-    <a href="{% url 'home' %}?query={{ topic.name }}"
-       class="text-gray-900 transition duration-200 block p-3 rounded-lg hover:bg-blue-500 hover:text-white">
-      {{ topic.name }}
-    </a>
-  </div>
-  {% empty %}
-  <p class="text-gray-600">No topics available.</p>
-  {% endfor %}
+<div class="topics-container bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+    {% for topic in topics %}
+    <div class="topic-item mb-2">
+        <a href="{% url 'home' %}?query={{ topic.name }}"
+           class="topic-link text-gray-900 transition duration-200 block p-3 rounded-lg hover:bg-blue-500 hover:text-white">
+            {{ topic.name }}
+        </a>
+    </div>
+    {% empty %}
+    <p class="no-topics-message text-gray-600">No topics available.</p>
+    {% endfor %}
 </div>
