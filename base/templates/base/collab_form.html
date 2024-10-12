@@ -1,16 +1,29 @@
-{% extends 'main.html' %}
-
-{% block content %}
-<div class="col-span-1 md:col-span-6 bg-white rounded-lg shadow-lg p-6 mx-auto mt-8">
-  <h2 class="text-2xl font-semibold text-center mb-4 text-gray-800">Submit Your Information</h2>
-  <form method="POST" action="">
-    {% csrf_token %}
-    <div class="mb-4">
-      {{ form.as_p }}
+{% for room in rooms %}
+<div class="room-container">
+  <div class="room-header">
+    <div>
+      <a href="{% url 'user-profile' room.host.id %}">
+        @{{ room.host.username }}
+      </a>
     </div>
-    <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-      Submit
-    </button>
-  </form>
+    {% if request.user == room.host %}
+    <div class="flex space-x-4 room-actions">
+      <a href="{% url 'edit-room' room.id %}">
+        Edit
+      </a>
+      <a href="{% url 'remove-room' room.id %}" class="remove-room">
+        Remove
+      </a>
+    </div>
+    {% endif %}
+  </div>
+
+  <h3 class="room-title">
+    {{ room.id }} | 
+    <a href="{% url 'room' room.id %}">
+      {{ room.name }}
+    </a>
+    - {{ room.topic.name }}
+  </h3>
 </div>
-{% endblock %}
+{% endfor %}

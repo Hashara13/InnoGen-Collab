@@ -2,22 +2,22 @@
 <hr class="border-gray-700 mb-4">
 
 {% for message in room_messages %}
-<div class="bg-gray-800 p-4 rounded-lg mb-4 shadow-lg">
-  <div class="flex justify-between items-center text-sm text-gray-400">
+<div class="message-container">
+  <div class="message-header">
     <small>
       <a href="{% url 'user-profile' message.user.id %}" class="text-blue-400 hover:underline">@{{message.user}}</a> | {{message.created | timesince}}
     </small>
     <small class="italic">To "{{message.room}}"</small>
   </div>
   
-  <p class="text-gray-300 mt-2">{{message.body}}</p>
+  <p class="message-body">{{message.body}}</p>
   
   {% if request.user == message.user %}
-    <a href="{% url 'remove-message' message.id %}" class="text-red-500 hover:text-red-400 text-sm mt-2 inline-block">
+    <a href="{% url 'remove-message' message.id %}" class="remove-message">
       Remove
     </a>
   {% endif %}
   
-  <hr class="border-gray-700 mt-4">
+  <hr class="message-divider">
 </div>
 {% endfor %}
