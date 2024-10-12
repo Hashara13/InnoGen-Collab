@@ -1,13 +1,13 @@
-<h3 class="search-title text-2xl font-semibold text-gray-900 mb-4">Search Here</h3>
+<h3 class="search-title text-2xl font-semibold text-gray-900 mb-4">Explore Here</h3>
 <hr class="border-gray-300 mb-4" />
 
-<div class="mb-4">
+<div class="mb-20">
     <a href="{% url 'home' %}" class="all-topics-link text-gray-900 hover:text-blue-600 transition duration-200 text-lg">
         All Topics
     </a>
 </div>
 
-<div class="topics-container bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+<div class="topics-container mt-10 bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
     {% for topic in topics %}
     <div class="topic-item mb-2">
         <a href="{% url 'home' %}?query={{ topic.name }}"

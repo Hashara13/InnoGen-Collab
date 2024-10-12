@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-<h1 class="page-title">Home</h1>
+<h1 class="page-title"></h1>
 
 <div class="page-grid">
   <div class="page-sidebar">
@@ -9,17 +9,22 @@
   </div>
   
   <div class="page-main">
-    <h4 class="content-count">{{ r_count }} Contents are available</h4>
+    <h3 class="search-title text-2xl font-semibold text-gray-900 mb-4">Existing Rooms</h3>
+    <hr class="border-gray-300 mb-4" />
+    <h4 class="content-count">{{ r_count }} Contents</h4>
     <a href="{% url 'add-room' %}" class="add-room-button">
       Add Rooms
-    </a>
-    
+    </a>    
+
+ 
     <div class="content-box">
       {% include 'base/content_page.html' %}
     </div>
   </div>
   
   <div class="page-sidebar">
+    <h3 class="search-title text-2xl font-semibold text-gray-900 mb-2">Recent</h3>
+    <hr class="border-gray-300 mb-5" />
     {% include 'base/activities_page.html' %}
   </div>
 </div>
